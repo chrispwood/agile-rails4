@@ -16,7 +16,7 @@ class OrdersControllerTest < ActionController::TestCase
     item.build_cart
     item.product = products(:ruby)
     item.save!
-    sesssion[:cart_id] = item.cart.id
+    session[:cart_id] = item.cart.id
     get :new
     assert_response :success
   end
@@ -55,6 +55,6 @@ class OrdersControllerTest < ActionController::TestCase
   test 'requires items in the cart' do
     get :new
     assert_redirected_to store_path
-    assert_equal flash[:notice], 'Your cart it empty'
+    assert_equal flash[:notice], 'Your cart is empty'
   end
 end
